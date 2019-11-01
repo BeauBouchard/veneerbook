@@ -32,3 +32,21 @@ Make sure you have all the required dependencies installed.
 TODO: Docker
 
 TODO: Docker-compose
+
+### Example Usage
+
+Simply start docker using the docker-compose command bellow:
+
+```
+docker-compose up
+```
+
+You should be able to see logs after the containers are created.
+
+#### Tests
+
+You can run tests inside the container by doing the following command:
+
+```
+
+```
