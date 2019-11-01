@@ -2,11 +2,10 @@ const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
+const routes = require('./routes');
+
 // I wrote these, the repo only adds winston as a dep
 const logger = require('server-side-tools').logger;
-const format = require('server-side-tools').format;
-
-const pkjson = require('../package.json');
 
 const app = express();
 
@@ -31,17 +30,9 @@ app.use((req, res, next) => {
 
 logger.info('turning on app...');
 
-/**
- * @param {Request} req - Express request object
- * @param {Response} res - Express response object
- * @param {Next} next - Express Next object
- */
-app.get('/health', (req, res, next) => {
-  const time = process.uptime();
-  // I just like this tight format for short lived servers
-  // typical heroku dynamo will be <1hour
-  const uptime = format.toHHMMSS(time + '');
-  res.status(200).send({ data: {uptime: uptime, version: pkjson.version} });
+// this will load all files from the `routes` folder as a new route
+Object.keys(routes).forEach((route) => {
+  app.use(`/${route}`, require(`${routes[route]}`).default);
 });
 
 // heroku dynamically assigns your app a port,

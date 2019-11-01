@@ -35,18 +35,16 @@ TODO: Docker-compose
 
 ### Example Usage
 
-Simply start docker using the docker-compose command bellow:
+Simply build the docker container using the docker command bellow:
 
 ```
-docker-compose up
+docker build -t beaubouchard/veneerbook .
 ```
-
-You should be able to see logs after the containers are created.
 
 #### Tests
 
 You can run tests inside the container by doing the following command:
 
 ```
-
+docker run wh-iterabb-it/cryptoget npm run test
 ```
