@@ -1,0 +1,32 @@
+{
+  "name": "veneerbook",
+  "version": "0.1.0",
+  "description": "A simple api that would demonstrate a number of simple RESTful concepts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeauBouchard/veneerbook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BeauBouchard/veneerbook/issues"
+  },
+  "homepage": "https://github.com/BeauBouchard/veneerbook#readme",
+  "author": "Beau Bouchard @beaubouchard",
+  "license": "GPL-3.0",
+  "scripts": {
+    "cover": "nyc npm test && nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov",
+    "start": "node ./src/server.js ",
+    "test": "node_modules/.bin/mocha test/. --recursive"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "helmet": "3.21.2",
+    "server-side-tools": "git+https://github.com/wh-iterabb-it/server-side-tools.git"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "chai-http": "4.3.0",
+    "codecov": "3.6.0",
+    "mocha": "6.2.2",
+    "nyc": "14.1.1"
+  }
+}
