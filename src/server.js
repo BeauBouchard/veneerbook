@@ -2,7 +2,11 @@ const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
-const logger = require('./utils/logger.js').default;
+// I wrote these, the repo only adds winston as a dep
+const logger = require('server-side-tools').logger;
+const format = require('server-side-tools').format;
+
+const pkjson = require('../package.json');
 
 const app = express();
 
@@ -34,7 +38,10 @@ logger.info('turning on app...');
  */
 app.get('/health', (req, res, next) => {
   const time = process.uptime();
-  res.status(200).send({ data: {uptime: time} });
+  // I just like this tight format for short lived servers
+  // typical heroku dynamo will be <1hour
+  const uptime = format.toHHMMSS(time + '');
+  res.status(200).send({ data: {uptime: uptime, version: pkjson.version} });
 });
 
 // heroku dynamically assigns your app a port,
@@ -45,3 +52,5 @@ const server = app.listen(process.env.PORT || 5000, function () {
 
   logger.info(`api listening at http://${host}:${port}`);
 });
+
+module.exports = server;
