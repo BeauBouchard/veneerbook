@@ -3,6 +3,8 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const should = chai.should();
 
+const pkjson = require('../../package.json');
+
 chai.use(chaiHttp);
 
 describe('Main', () => {
@@ -15,6 +17,9 @@ describe('Main', () => {
         .get('/health')
         .end((err, res) => {
           res.should.have.status(200);
+          res.body.data.uptime.should.exist;
+          res.body.data.uptime.should.be.a('string');
+          res.body.data.version.should.equal(pkjson.version)
           done();
       });
     });
