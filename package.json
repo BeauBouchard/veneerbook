@@ -12,10 +12,9 @@
   "homepage": "https://github.com/BeauBouchard/veneerbook#readme",
   "author": "Beau Bouchard @beaubouchard",
   "license": "GPL-3.0",
-  "type": "module",
   "scripts": {
     "cover": "nyc npm test && nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov",
-    "start": "node --experimental-modules ./src/server.js ",
+    "start": "node ./src/server.js ",
     "test": "node_modules/.bin/mocha test/. --recursive"
   },
   "dependencies": {

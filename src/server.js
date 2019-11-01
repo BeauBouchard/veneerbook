@@ -1,9 +1,8 @@
-import express from 'express';
-import logger from 'winston';
-import helmet from 'helmet';
-import bodyParser from 'body-parser';
+const express = require('express');
+const helmet = require('helmet');
+const bodyParser = require('body-parser');
 
-const pkjson = require('../package.json');
+const logger = require('./utils/logger.js').default;
 
 const app = express();
 
@@ -35,7 +34,7 @@ logger.info('turning on app...');
  */
 app.get('/health', (req, res, next) => {
   const time = process.uptime();
-  res.status(200).send({ data: {uptime: time, version: pkjson.version} });
+  res.status(200).send({ data: {uptime: time} });
 });
 
 // heroku dynamically assigns your app a port,
@@ -46,5 +45,3 @@ const server = app.listen(process.env.PORT || 5000, function () {
 
   logger.info(`api listening at http://${host}:${port}`);
 });
-
-module.exports = server;
