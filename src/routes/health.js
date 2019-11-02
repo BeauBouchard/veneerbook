@@ -1,8 +1,7 @@
 const express = require('express');
 const logger = require('server-side-tools').logger;
-const format = require('server-side-tools').format;
 
-const pkjson = require('../../package.json');
+const healthController = require('../controllers/health');
 
 const router = express('Router');
 
@@ -15,11 +14,7 @@ logger.info('setting up routes for /health');
  * @return Returns a health response
  */
 router.get('/', (req, res) => {
-  // building a whole controller for this would
-  // be a little much...
-  const time = process.uptime();
-  const uptime = format.toDDHHMMSS(time + '');
-  res.status(200).send({ data: {uptime: uptime, version: pkjson.version} });
+  healthController.getHealth(req, res);
 });
 
 /**
@@ -29,7 +24,7 @@ router.get('/', (req, res) => {
  * @return catches all other requests
  */
 router.all('/', (req, res) => {
-  res.status(405).json({data:['Method Not Allowed']});
+  healthController.methodNotAllowed(req, res);
 });
 
 module.exports.default = router;

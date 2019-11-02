@@ -36,7 +36,7 @@ describe('Main', () => {
   describe('GET /fakeroute', () => {
     it('it should have failure GET with status of 404', (done) => {
       chai.request(server)
-        .put('/fakeroute')
+        .get('/fakeroute')
         .end((err, res) => {
           res.should.have.status(404);
           res.body.data.should.exist;
@@ -57,9 +57,9 @@ describe('Main', () => {
       });
     });
 
-    it('it should have a failure PUT with status of 405', (done) => {
+    it('it should have a failure PATCH with status of 405', (done) => {
       chai.request(server)
-        .put('/address')
+        .patch('/address')
         .end((err, res) => {
           res.should.have.status(405);
           res.body.data.should.exist;
