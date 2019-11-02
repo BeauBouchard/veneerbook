@@ -46,5 +46,5 @@ docker build -t beaubouchard/veneerbook .
 You can run tests inside the container by doing the following command:
 
 ```
-docker run wh-iterabb-it/cryptoget npm run test
+docker run beaubouchard/veneerbook npm run test
 ```

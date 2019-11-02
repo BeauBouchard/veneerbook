@@ -25,4 +25,17 @@ describe('Main', () => {
     });
   });
 
+  describe('GET /address', () => {
+    it('it should have successful GET with status of 200', (done) => {
+      chai.request(server)
+        .get('/address')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.data.should.exist;
+          res.body.data.should.be.a('array');
+          done();
+      });
+    });
+  });
+
 });
