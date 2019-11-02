@@ -30,18 +30,6 @@ class AddressController extends Controller {
     // TODO:
   }
 
-  createSingleAddress () {
-    // TODO:
-  }
-
-  deleteSingleAddress () {
-    // TODO:
-  }
-
-  updateSingleAddress () {
-    // TODO:
-  }
-
   getSingleAddress (req, res) {
     res.status(200).json(this.messageResponse('Hello World'));
   }

@@ -36,9 +36,10 @@ describe('Main', () => {
   describe('GET /fakeroute', () => {
     it('it should have failure GET with status of 404', (done) => {
       chai.request(server)
-        .get('/fakeroute')
+        .put('/fakeroute')
         .end((err, res) => {
           res.should.have.status(404);
+          res.body.data.should.exist;
           done();
       });
     });

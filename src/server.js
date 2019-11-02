@@ -42,7 +42,7 @@ Object.keys(routes).forEach((route) => {
  * @param {Response} res - Express response object
  * @return catches all other requests
  */
-router.all('/', (req, res) => {
+app.use('/', (req, res) => {
   res.status(404).json({data:['Not Found']});
 });
 
