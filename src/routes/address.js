@@ -17,4 +17,14 @@ router.get('/', (req, res) => {
   addressController.getSingleAddress(req, res);
 });
 
+/**
+ * POST UPDATE DELETE OPTION address response
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @return catches all other requests
+ */
+router.all('/', (req, res) => {
+  addressController.methodNotAllowed(req, res);
+});
+
 module.exports.default = router;

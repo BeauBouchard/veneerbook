@@ -36,6 +36,16 @@ describe('Main', () => {
           done();
       });
     });
-  });
 
+    it('it should have a failure PUT with status of 405', (done) => {
+      chai.request(server)
+        .put('/address')
+        .end((err, res) => {
+          res.should.have.status(405);
+          res.body.data.should.exist;
+          res.body.data.should.be.a('array');
+          done();
+      });
+    });
+  });
 });
