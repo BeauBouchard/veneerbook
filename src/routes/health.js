@@ -20,7 +20,16 @@ router.get('/', (req, res) => {
   const time = process.uptime();
   const uptime = format.toDDHHMMSS(time + '');
   res.status(200).send({ data: {uptime: uptime, version: pkjson.version} });
+});
 
+/**
+ * POST UPDATE DELETE OPTION health response
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @return catches all other requests
+ */
+router.all('/', (req, res) => {
+  res.status(405).json({data:['Method Not Allowed']});
 });
 
 module.exports.default = router;

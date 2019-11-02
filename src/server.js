@@ -1,11 +1,12 @@
 const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
+// I wrote these, the repo only adds winston as a dep
+const logger = require('server-side-tools').logger;
 
 const routes = require('./routes');
 
-// I wrote these, the repo only adds winston as a dep
-const logger = require('server-side-tools').logger;
+const router = express('Router');
 
 const app = express();
 
@@ -33,6 +34,16 @@ logger.info('turning on app...');
 // this will load all files from the `routes` folder as a new route
 Object.keys(routes).forEach((route) => {
   app.use(`/${route}`, require(`${routes[route]}`).default);
+});
+
+/**
+ * 404
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @return catches all other requests
+ */
+router.all('/', (req, res) => {
+  res.status(404).json({data:['Not Found']});
 });
 
 // heroku dynamically assigns your app a port,

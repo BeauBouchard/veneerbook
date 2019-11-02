@@ -19,14 +19,6 @@ class Controller {
    * @param {Request} req - Express request object
    * @param {Response} res - Express response object
    */
-  notFound(req, res) {
-    res.status(404).json(this.messageResponse('Not Found'));
-  }
-
-  /**
-   * @param {Request} req - Express request object
-   * @param {Response} res - Express response object
-   */
   methodNotAllowed(req, res) {
     res.status(405).json(this.messageResponse('Method Not Allowed'));
   }
