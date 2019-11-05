@@ -1,11 +1,14 @@
 const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
+// I wrote these, the repo only adds winston as a dep
+const logger = require('server-side-tools').logger;
 
 const routes = require('./routes');
 
-// I wrote these, the repo only adds winston as a dep
-const logger = require('server-side-tools').logger;
+const db = require('./models').db;
+
+const router = express('Router');
 
 const app = express();
 
@@ -34,6 +37,17 @@ logger.info('turning on app...');
 Object.keys(routes).forEach((route) => {
   app.use(`/${route}`, require(`${routes[route]}`).default);
 });
+
+/**
+ * 404
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @return catches all other requests
+ */
+app.use('/', (req, res) => {
+  res.status(404).json({data:['Not Found']});
+});
+
 
 // heroku dynamically assigns your app a port,
 // so you can't set the port to a fixed number.
