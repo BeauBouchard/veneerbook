@@ -14,11 +14,41 @@ logger.info('setting up routes for /address');
  * @return Returns single address object
  */
 router.get('/', (req, res) => {
-  addressController.getSingleAddress(req, res);
+  addressController.getCollection(req, res);
 });
 
 /**
- * POST UPDATE DELETE OPTION address response
+ * POST address response
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @return Returns created address object 201 status
+ */
+router.post('/', (req, res) => {
+  addressController.createSingle(req, res);
+});
+
+/**
+ * DELETE address response
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @return Returns 200 if deleted
+ */
+router.delete('/:id', (req, res) => {
+  addressController.deleteSingle(req, res);
+});
+
+/**
+ * PUT address response
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @return Returns 200 if updated
+ */
+router.put('/:id', (req, res) => {
+  addressController.updateSingle(req, res);
+});
+
+/**
+ * OPTION address response
  * @param {Request} req - Express request object
  * @param {Response} res - Express response object
  * @return catches all other requests

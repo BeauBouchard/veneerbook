@@ -6,6 +6,8 @@ const logger = require('server-side-tools').logger;
 
 const routes = require('./routes');
 
+const db = require('./models').db;
+
 const router = express('Router');
 
 const app = express();
@@ -45,6 +47,7 @@ Object.keys(routes).forEach((route) => {
 app.use('/', (req, res) => {
   res.status(404).json({data:['Not Found']});
 });
+
 
 // heroku dynamically assigns your app a port,
 // so you can't set the port to a fixed number.

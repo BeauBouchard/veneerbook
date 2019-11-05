@@ -49,6 +49,10 @@ describe('Main', () => {
     it('it should have successful GET with status of 200', (done) => {
       chai.request(server)
         .get('/address')
+        .query({
+          city: 'new york',
+          state: 'ny',
+        })
         .end((err, res) => {
           res.should.have.status(200);
           res.body.data.should.exist;
@@ -60,6 +64,10 @@ describe('Main', () => {
     it('it should have a failure PATCH with status of 405', (done) => {
       chai.request(server)
         .patch('/address')
+        .query({
+          city: 'new york',
+          state: 'ny',
+        })
         .end((err, res) => {
           res.should.have.status(405);
           res.body.data.should.exist;

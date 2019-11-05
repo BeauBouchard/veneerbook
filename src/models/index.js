@@ -25,6 +25,11 @@ db.on('error', (error) => logger.error(error));
 
 db.once('open', () => logger.info('connected to database'));
 
+db.collection('Address').drop(function(err, delOK) {
+  if (err) throw err;
+  if (delOK) console.log('Collection deleted');
+});
+
 fs
   .readdirSync(__dirname)
   .filter(file => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
@@ -35,19 +40,18 @@ fs
     models[fileName] = fullPath;
   });
 
-  const seeds =
-    {
-      name: 'sample address 1',
-      street: '111 Varick St',
-      city: 'New York',
-      state: 'NY',
-      country: 'USA',
-    };
+const seeds =
+  {
+    name: 'sample address 1',
+    street: '111 varick st',
+    city: 'new york',
+    state: 'ny',
+    country: 'usa',
+  };
 
-  db.collection(`Address`).insertOne(seeds, (err, res) => {
-    if (err) throw err;
-    logger.info("1 document inserted");
-  });
-
+db.collection('Address').insertOne(seeds, (err, res) => {
+  if (err) throw err;
+  logger.info('1 document inserted');
+});
 
 module.exports = { Model, db, models };
