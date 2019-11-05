@@ -2,6 +2,11 @@ sudo: required
 
 services:
   - docker
+  - mongodb
+
+env:
+  global:
+    - MONGODB_VERSION=2.6.10
 
 language: node_js
 
@@ -10,6 +15,12 @@ node_js:
 
 before_install:
   - docker build -t beaubouchard/veneerbook .
+  - docker ps -a
+
+
+before_script:
+  - sleep 15
+
 script:
   - docker run beaubouchard/veneerbook npm run test
   - docker run -e "CODECOV_TOKEN=${CODECOV_TOKEN}" beaubouchard/veneerbook npm run cover

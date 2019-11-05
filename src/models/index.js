@@ -15,7 +15,7 @@ class Model {
 
 // for the connection url, make sure its
 // mongodb://{mongo container name}/{dbname}
-const serverURL = process.env.DATABASE_URL || 'mongodb://mongo/veneerbook';
+const serverURL = process.env.MONGODB_URL || 'mongodb://mongo/veneerbook';
 
 mongoose.connect(serverURL, { useNewUrlParser: true });
 
