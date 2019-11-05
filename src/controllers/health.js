@@ -1,6 +1,5 @@
 const logger = require('server-side-tools').logger;
 const format = require('server-side-tools').format;
-
 const pkjson = require('../../package.json');
 
 const { Controller } = require('./');

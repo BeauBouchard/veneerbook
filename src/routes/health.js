@@ -1,7 +1,7 @@
 const express = require('express');
 const logger = require('server-side-tools').logger;
 
-const healthController = require('../controllers/health');
+const healthController = require('../controllers/health').default;
 
 const router = express('Router');
 

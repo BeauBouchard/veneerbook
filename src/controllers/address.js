@@ -11,7 +11,6 @@ class AddressController extends Controller {
   getSingleAddress (req, res) {
     res.status(200).json(this.messageResponse('Hello World'));
   }
-
 }
 
 module.exports.default = new AddressController();
